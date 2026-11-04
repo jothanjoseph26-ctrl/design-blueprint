@@ -95,7 +95,6 @@ function LessonPlayer() {
                 if (d && t / d > 0.95) markDone();
               }}
               onEnded={() => markDone()}
-              overlay={<img src={hero} alt="Instructor" width={160} height={90} className="w-40 rounded-md border border-border object-cover" />}
             />
           ) : (
             <div className="aspect-video w-full rounded-lg bg-card" />
