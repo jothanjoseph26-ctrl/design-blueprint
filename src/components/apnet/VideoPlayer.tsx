@@ -159,8 +159,6 @@ export const VideoPlayer = forwardRef<VideoPlayerHandle, Props>(function VideoPl
         onEnded={() => { setPlaying(false); onEnded?.(); }}
       />
 
-      {overlay && !fs && <div className="pointer-events-none absolute bottom-16 right-3">{overlay}</div>}
-
       {loading && !error && (
         <div className="pointer-events-none absolute inset-0 grid place-items-center">
           <Loader2 className="h-10 w-10 animate-spin text-gold" />
