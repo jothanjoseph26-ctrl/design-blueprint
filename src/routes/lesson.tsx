@@ -108,10 +108,10 @@ function LessonPlayer() {
               </p>
             </div>
             <div className="flex gap-2">
-              <button disabled={idx === 0} onClick={() => go(lessons[idx - 1].id)} className="flex items-center gap-1 rounded-md border border-border px-3 py-2 text-sm disabled:opacity-40 hover:bg-secondary">
+              <button disabled={idx === 0} onClick={() => go(lessons[idx - 1]!.id)} className="flex items-center gap-1 rounded-md border border-border px-3 py-2 text-sm disabled:opacity-40 hover:bg-secondary">
                 <ChevronLeft className="h-4 w-4" /> Previous
               </button>
-              <button disabled={idx === lessons.length - 1} onClick={() => go(lessons[idx + 1].id)} className="flex items-center gap-1 rounded-md bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground disabled:opacity-40">
+              <button disabled={idx === lessons.length - 1} onClick={() => go(lessons[idx + 1]!.id)} className="flex items-center gap-1 rounded-md bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground disabled:opacity-40">
                 Next Lesson <ChevronRight className="h-4 w-4" />
               </button>
             </div>
