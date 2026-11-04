@@ -3,7 +3,6 @@ import {
   Clock, Video, CheckCircle2, ChevronRight, ChevronLeft, Download, FileText, PlayCircle,
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import hero from "@/assets/hero.jpg";
 import excel from "@/assets/lesson-excel.jpg";
 import { StudentShell } from "@/components/apnet/StudentShell";
 import { VideoPlayer, type VideoPlayerHandle } from "@/components/apnet/VideoPlayer";
@@ -47,7 +46,7 @@ function LessonPlayer() {
   useEffect(() => { if (loaded) localStorage.setItem(KEY, JSON.stringify(store)); }, [store, loaded]);
 
   const idx = Math.max(0, lessons.findIndex((l) => l.id === store.current));
-  const lesson = lessons[idx];
+  const lesson = lessons[idx] ?? lessons[0];
   const source = useMemo(() => resolveVideoSource(lesson), [lesson]);
   // Capture resume point once per lesson switch
   const startAt = useMemo(() => store.pos[lesson.id] ?? 0, [lesson.id, loaded]); // eslint-disable-line react-hooks/exhaustive-deps
