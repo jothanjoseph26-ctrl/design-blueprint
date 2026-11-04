@@ -23,7 +23,7 @@ const SAMPLE_HLS = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8";
 
 export function resolveVideoSource(lesson: Lesson): { src: string; isHls: boolean } {
   if (lesson.videoUrl) return { src: lesson.videoUrl, isHls: lesson.videoUrl.includes(".m3u8") };
-  const code = import.meta.env.VITE_CF_STREAM_CUSTOMER_CODE as string | undefined;
+  const code = import.meta.env["VITE_CF_STREAM_CUSTOMER_CODE"] as string | undefined;
   if (lesson.streamId && code) {
     return {
       src: `https://customer-${code}.cloudflarestream.com/${lesson.streamId}/manifest/video.m3u8`,
@@ -34,7 +34,7 @@ export function resolveVideoSource(lesson: Lesson): { src: string; isHls: boolea
 }
 
 export function streamPoster(lesson: Lesson): string | undefined {
-  const code = import.meta.env.VITE_CF_STREAM_CUSTOMER_CODE as string | undefined;
+  const code = import.meta.env["VITE_CF_STREAM_CUSTOMER_CODE"] as string | undefined;
   if (lesson.poster) return lesson.poster;
   if (lesson.streamId && code)
     return `https://customer-${code}.cloudflarestream.com/${lesson.streamId}/thumbnails/thumbnail.jpg`;

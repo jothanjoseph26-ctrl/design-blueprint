@@ -3,7 +3,6 @@ import {
   Clock, Video, CheckCircle2, ChevronRight, ChevronLeft, Download, FileText, PlayCircle,
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import hero from "@/assets/hero.jpg";
 import excel from "@/assets/lesson-excel.jpg";
 import { StudentShell } from "@/components/apnet/StudentShell";
 import { VideoPlayer, type VideoPlayerHandle } from "@/components/apnet/VideoPlayer";
@@ -47,7 +46,7 @@ function LessonPlayer() {
   useEffect(() => { if (loaded) localStorage.setItem(KEY, JSON.stringify(store)); }, [store, loaded]);
 
   const idx = Math.max(0, lessons.findIndex((l) => l.id === store.current));
-  const lesson = lessons[idx];
+  const lesson = lessons[idx] ?? lessons[0]!;
   const source = useMemo(() => resolveVideoSource(lesson), [lesson]);
   // Capture resume point once per lesson switch
   const startAt = useMemo(() => store.pos[lesson.id] ?? 0, [lesson.id, loaded]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -95,7 +94,6 @@ function LessonPlayer() {
                 if (d && t / d > 0.95) markDone();
               }}
               onEnded={() => markDone()}
-              overlay={<img src={hero} alt="Instructor" width={160} height={90} className="w-40 rounded-md border border-border object-cover" />}
             />
           ) : (
             <div className="aspect-video w-full rounded-lg bg-card" />
@@ -110,10 +108,10 @@ function LessonPlayer() {
               </p>
             </div>
             <div className="flex gap-2">
-              <button disabled={idx === 0} onClick={() => go(lessons[idx - 1].id)} className="flex items-center gap-1 rounded-md border border-border px-3 py-2 text-sm disabled:opacity-40 hover:bg-secondary">
+              <button disabled={idx === 0} onClick={() => go(lessons[idx - 1]!.id)} className="flex items-center gap-1 rounded-md border border-border px-3 py-2 text-sm disabled:opacity-40 hover:bg-secondary">
                 <ChevronLeft className="h-4 w-4" /> Previous
               </button>
-              <button disabled={idx === lessons.length - 1} onClick={() => go(lessons[idx + 1].id)} className="flex items-center gap-1 rounded-md bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground disabled:opacity-40">
+              <button disabled={idx === lessons.length - 1} onClick={() => go(lessons[idx + 1]!.id)} className="flex items-center gap-1 rounded-md bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground disabled:opacity-40">
                 Next Lesson <ChevronRight className="h-4 w-4" />
               </button>
             </div>

@@ -13,7 +13,6 @@ type Props = {
   startAt?: number;
   onProgress?: (time: number, duration: number) => void;
   onEnded?: () => void;
-  overlay?: React.ReactNode;
 };
 
 const speeds = [0.5, 0.75, 1, 1.25, 1.5, 2];
@@ -25,7 +24,7 @@ const fmt = (s: number) => {
 };
 
 export const VideoPlayer = forwardRef<VideoPlayerHandle, Props>(function VideoPlayer(
-  { src, isHls, poster, startAt = 0, onProgress, onEnded, overlay },
+  { src, isHls, poster, startAt = 0, onProgress, onEnded },
   ref,
 ) {
   const wrap = useRef<HTMLDivElement>(null);
@@ -159,8 +158,6 @@ export const VideoPlayer = forwardRef<VideoPlayerHandle, Props>(function VideoPl
         }}
         onEnded={() => { setPlaying(false); onEnded?.(); }}
       />
-
-      {overlay && !fs && <div className="pointer-events-none absolute bottom-16 right-3">{overlay}</div>}
 
       {loading && !error && (
         <div className="pointer-events-none absolute inset-0 grid place-items-center">
