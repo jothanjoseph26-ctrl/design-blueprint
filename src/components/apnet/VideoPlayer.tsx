@@ -24,7 +24,7 @@ const fmt = (s: number) => {
 };
 
 export const VideoPlayer = forwardRef<VideoPlayerHandle, Props>(function VideoPlayer(
-  { src, isHls, poster, startAt = 0, onProgress, onEnded, overlay },
+  { src, isHls, poster, startAt = 0, onProgress, onEnded },
   ref,
 ) {
   const wrap = useRef<HTMLDivElement>(null);
