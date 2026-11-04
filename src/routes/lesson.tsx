@@ -46,7 +46,7 @@ function LessonPlayer() {
   useEffect(() => { if (loaded) localStorage.setItem(KEY, JSON.stringify(store)); }, [store, loaded]);
 
   const idx = Math.max(0, lessons.findIndex((l) => l.id === store.current));
-  const lesson = lessons[idx] ?? lessons[0];
+  const lesson = lessons[idx] ?? lessons[0]!;
   const source = useMemo(() => resolveVideoSource(lesson), [lesson]);
   // Capture resume point once per lesson switch
   const startAt = useMemo(() => store.pos[lesson.id] ?? 0, [lesson.id, loaded]); // eslint-disable-line react-hooks/exhaustive-deps

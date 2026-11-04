@@ -13,7 +13,6 @@ type Props = {
   startAt?: number;
   onProgress?: (time: number, duration: number) => void;
   onEnded?: () => void;
-  overlay?: React.ReactNode;
 };
 
 const speeds = [0.5, 0.75, 1, 1.25, 1.5, 2];
